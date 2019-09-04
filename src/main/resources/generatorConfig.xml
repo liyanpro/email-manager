@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration>
+	<classPathEntry
+		location="/Users/liyan/maven-3.2.5/maven-dependcies/mysql/mysql-connector-java/5.1.34/mysql-connector-java-5.1.34.jar" />
+	<context id="context1" targetRuntime="MyBatis3">
+    	<plugin type="cloud.liyan.mybatis.plugins.MySQLLimitPlugin"></plugin>
+    	
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+			connectionURL="jdbc:mysql://localhost:3306/email?useUnicode=true&amp;characterEncoding=UTF-8"
+			userId="saas" password="BjOFYGAY" />
+		<javaModelGenerator targetPackage="cloud.liyan.emailmanager.dao.model"
+			targetProject="/Users/liyan/Documents/idea/email-manager/src/main/java/" />
+		<sqlMapGenerator targetPackage="mappers"
+			targetProject="/Users/liyan/Documents/idea/email-manager/src/main/resources" />
+		<javaClientGenerator targetPackage="cloud.liyan.emailmanager.dao.persistence"
+			targetProject="/Users/zcool/workspace/zcool-mail/src/main/java/" type="XMLMAPPER" />
+	
+		<table schema="payroll" tableName="formula_field" />
+	</context>
+</generatorConfiguration>
+
+<!-- 选择pom.xml文件，击右键先择Run AS——>Maven Build… ——>在Goals框中输入：mybatis-generator:generate -->
