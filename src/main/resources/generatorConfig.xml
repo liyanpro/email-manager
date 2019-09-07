@@ -4,19 +4,21 @@
 	<classPathEntry
 		location="/Users/liyan/maven-3.2.5/maven-dependcies/mysql/mysql-connector-java/5.1.34/mysql-connector-java-5.1.34.jar" />
 	<context id="context1" targetRuntime="MyBatis3">
-    	<plugin type="cloud.liyan.mybatis.plugins.MySQLLimitPlugin"></plugin>
+    	<plugin type="cloud.liyan.mybatis.plugins.MySqlLimitPlugin"></plugin>
+		<plugin type="cloud.liyan.mybatis.plugins.BatchInsertPlugin"></plugin>
+		<plugin type="cloud.liyan.mybatis.plugins.BatchUpdatePlugin"></plugin>
     	
 		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
 			connectionURL="jdbc:mysql://localhost:3306/email?useUnicode=true&amp;characterEncoding=UTF-8"
-			userId="saas" password="BjOFYGAY" />
+			userId="root" password="test" />
 		<javaModelGenerator targetPackage="cloud.liyan.emailmanager.dao.model"
 			targetProject="/Users/liyan/Documents/idea/email-manager/src/main/java/" />
 		<sqlMapGenerator targetPackage="mappers"
 			targetProject="/Users/liyan/Documents/idea/email-manager/src/main/resources" />
 		<javaClientGenerator targetPackage="cloud.liyan.emailmanager.dao.persistence"
-			targetProject="/Users/zcool/workspace/zcool-mail/src/main/java/" type="XMLMAPPER" />
+			targetProject="/Users/liyan/Documents/idea/email-manager/src/main/java/" type="XMLMAPPER" />
 	
-		<table schema="payroll" tableName="formula_field" />
+		<table schema="email" tableName="email_task" />
 	</context>
 </generatorConfiguration>
 
