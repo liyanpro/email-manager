@@ -48,4 +48,19 @@ public class StringUtil {
         }
         return rtn;
     }
+
+    /**
+     * 判断是否是邮箱地址
+     *
+     * @param email
+     * @return
+     */
+    public static boolean isEmail(String email) {
+        Pattern pattern = Pattern.compile("^\\w+([-.]\\w+)*@\\w+([-]\\w+)*\\.(\\w+([-]\\w+)*\\.)*[a-z]{2,3}$");
+        Matcher matcher = pattern.matcher(email);
+        if (matcher.matches()) {
+            return true;
+        }
+        return false;
+    }
 }
