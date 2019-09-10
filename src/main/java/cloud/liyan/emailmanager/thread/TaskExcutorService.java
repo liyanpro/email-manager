@@ -26,7 +26,7 @@ public class TaskExcutorService extends LoggerUtil{
     private MailService mailService;
     @Async
     public void executorTask(){
-        Jedis jedis = RedisClient.getJedis();
+        Jedis jedis = RedisClient.getInstance().getJedis();
         while (true) {
             String taskKey = jedis.lpop(InitUtil.TASK_KEY);
             if (StringUtils.isNotBlank(taskKey)) {

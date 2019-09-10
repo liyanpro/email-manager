@@ -25,10 +25,6 @@ public class EmailManagerApplication extends SpringBootServletInitializer implem
     public void run(String... args) {
 
     }
-    @Override
-    protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-        return application.sources(EmailManagerApplication.class);
-    }
 
     @Bean
     public MultipartConfigElement multipartConfigElement() {

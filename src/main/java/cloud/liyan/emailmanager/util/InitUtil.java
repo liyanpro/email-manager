@@ -76,6 +76,6 @@ public class InitUtil {
 	 * 初始化host
 	 */
 	public static void mailInit() {
-		HOST = ConfigUtils.getConf().getString("edm_host");
+		HOST = ConfigUtils.getConf().getString("host");
 	}
 }

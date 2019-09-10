@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel='stylesheet' href='/static/css/bootstrap.min.css' />
+<link rel='stylesheet' href='/static/css/main.css' />
+<title>登录首页</title>
+</head>
+<body>
+	<div class="container">
+		<form class="form-signin">
+			<h2>邮件任务管理系统</h2>
+			<label for="inputEmail" class="sr-only">账号</label> 
+			<input type="text" id="username" name="username" class="form-control" style="width:100%" placeholder="用户名" required autofocus> 
+			<label for="inputPassword" class="sr-only">密码</label> 
+			<input type="password" id="password" name="password" class="form-control" style="width:100%" placeholder="密码" required>
+			<div class="checkbox">
+				<label> <input name="remember" id="remember" type="checkbox" value="remember-me">记住我</label>
+			</div>
+			<input type="button" id="btn" name="btn"  class="btn btn-lg btn-primary btn-block"  value="登录" onclick="login();"/>
+		</form>
+	</div>
+	<script type="text/javascript" src="/static/js/jquery.min.js"></script>
+	<script type="text/javascript" src="/static/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="/static/js/jquery.cookie.js"></script>
+	<script type="text/javascript">
+		function login() {			
+			var username = encodeURI($("#username").val());
+			var password = encodeURI($("#password").val());
+			var remeber = $("#remember").val();
+			var userdata={
+					"username" : username,
+					"password" : password,
+					"remeber":remeber
+			};
+			$.ajax({
+				type : 'POST',
+				url : "/api/login",
+				dataType : 'json',
+				headers: {
+					"content-Type":"application/json",
+					 },
+				data : JSON.stringify(userdata),
+				success : function(data) {
+					if (data.resultCode == "SUCCESS") {
+                        window.location.href="page/list.html";
+					}
+					else{
+						alert(data.msg);
+					}
+				},
+				error : function(data) {
+					alert("登录失败，请联系管理员");
+				}
+			});
+		}
+	</script>
+</body>
+
+</html>

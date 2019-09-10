@@ -1,0 +1,58 @@
+<nav class="navbar navbar-inverse" role="navigation">
+	<div class="container">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+				<span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+			</button>
+		</div>
+		<div class="collapse navbar-collapse">
+			<ul id="mynav" class="nav navbar-nav">
+				<li id="article_li"><a href="/create.html">创建任务</a></li>
+				<li><a href="/test.html">测试任务</a></li>
+				<li><a href="/upload.html">上传任务</a></li>
+				<li><a href="/list.html">任务列表</a></li>
+				<li><a href="/emailMonitor.html">邮件监控</a></li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<li><a id="loginName"></a></li>
+	            <li><a id="logout-a" onclick="logout();">安全退出</a></li>
+         	</ul>
+		</div>
+	</div>
+	<script type="text/javascript" src="/static/js/jquery.min.js"></script>
+	<script type="text/javascript" src="/static/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="/static/js/jquery.ui.widget.js"></script>
+    <script type="text/javascript">
+     $(function() {
+      $(".dropdown-toggle").dropdown('toggle');
+       $.ajax({
+	  	  type : 'POST',
+				url : "/api/getUserInfo",
+				success:function(data){
+					if(data.userName!=null){
+						$("#loginName").text("Hello，"+data.userName);
+					}
+					else{
+						$("#loginName").val("游客");
+						$("#logout-a").hide();
+					}
+				}
+	    }); 
+	   });	
+     function logout(){
+	 	 $.ajax({
+	 		 type:'POST',
+	 		 url:'/api/logout',
+	 		 success:function(data){
+	 			 if(data.resultCode=="SUCCESS"){
+	 				 window.location.href="login.html";
+	 			 }
+	 			 else{
+	 				 alert("退出失败");
+	 			 }
+	 		 }
+	 	 });
+	} 
+    </script>
+    <script type="text/javascript" src="/static/js/main.js"></script>
+</nav>

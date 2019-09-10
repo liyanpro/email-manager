@@ -4,6 +4,7 @@ import cloud.liyan.emailmanager.dao.model.EmailTask;
 import cloud.liyan.emailmanager.dao.model.MailTaskForWeb;
 import cloud.liyan.emailmanager.dao.model.constant.ServiceResult;
 import cloud.liyan.emailmanager.dao.model.constant.HttpConstants;
+import cloud.liyan.emailmanager.service.Impl.MailServiceImpl;
 import cloud.liyan.emailmanager.service.MailService;
 import cloud.liyan.emailmanager.util.InitUtil;
 import cloud.liyan.emailmanager.util.LoggerUtil;
@@ -17,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.io.InputStream;

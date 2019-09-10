@@ -13,41 +13,52 @@ import redis.clients.jedis.JedisPoolConfig;
  */
 public class RedisClient {
 
-   private final static Logger logger=LoggerFactory.getLogger(RedisClient.class);
+    private final static Logger logger=LoggerFactory.getLogger(RedisClient.class);
     private static JedisPool redis_pool;
+    private static volatile RedisClient redisClinet;
+    private RedisClient() { }
 
-    private static void createJedisPool() {
-        try {
-            JedisPoolConfig poolConfig = new JedisPoolConfig();
-            poolConfig.setMaxIdle(Integer.valueOf(RedisConfig.getValue("redis.maxIdle")));
-            poolConfig.setMaxTotal(Integer.valueOf(RedisConfig.getValue("redis.maxActive")));
-            poolConfig.setMaxWaitMillis(Integer.valueOf(RedisConfig.getValue("redis.maxWait")));
-            redis_pool = new JedisPool(poolConfig, RedisConfig.getValue("redis.host"),
-                    Integer.valueOf(RedisConfig.getValue("redis.port")));
-        } catch (Exception e) {
-            logger.error("初始化redis异常", e);
-        }
+    public static RedisClient getInstance() {
+       if(redisClinet==null){
+           synchronized (RedisClient.class){
+               if(redisClinet==null){
+                   redisClinet=new RedisClient();
+               }
+           }
+       }
+       return redisClinet;
     }
 
 
-    private static synchronized void poolInit() {
+    public  void poolInit() {
         if (redis_pool == null) {
-            createJedisPool();
+            try {
+                JedisPoolConfig poolConfig = new JedisPoolConfig();
+                poolConfig.setMaxIdle(Integer.valueOf(RedisConfig.getValue("redis.maxIdle")));
+                poolConfig.setMaxTotal(Integer.valueOf(RedisConfig.getValue("redis.maxActive")));
+                poolConfig.setMaxWaitMillis(Integer.valueOf(RedisConfig.getValue("redis.maxWait")));
+                redis_pool = new JedisPool(poolConfig, RedisConfig.getValue("redis.host"),
+                        Integer.valueOf(RedisConfig.getValue("redis.port")));
+            } catch (Exception e) {
+                logger.error("初始化redis异常", e);
+            }
         }
     }
 
 
-    public static Jedis getJedis() {
+    public  Jedis getJedis() {
+        Jedis jedis=null;
         try {
             if (redis_pool == null) {
                 poolInit();
             }
-            return redis_pool.getResource();
+            jedis= redis_pool.getResource();
         } catch (Exception e) {
             logger.error("获取redis对象异常", e);
-            redis_pool = null;
+            poolInit();
+            jedis= redis_pool.getResource();
         }
-        return null;
+        return jedis;
     }
 
 
