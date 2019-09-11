@@ -19,6 +19,16 @@
         <spring-cloud.version>Greenwich.SR2</spring-cloud.version>
     </properties>
 
+    <profiles>
+        <profile>
+            <id>dev</id>
+            <properties>
+              <logger.base>/opt/logs</logger.base>
+              <logger.level>info</logger.level>
+            </properties>
+        </profile>
+
+    </profiles>
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>

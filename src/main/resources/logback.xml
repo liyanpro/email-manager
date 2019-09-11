@@ -16,7 +16,7 @@
 		</encoder>
 		<rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
 			<!-- rollover daily -->
-			<fileNamePattern>${log.base}/spring-boot-web-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+			<fileNamePattern>${log.base}/web-mail-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
 			<maxHistory>100</maxHistory>
 			<maxFileSize>100MB</maxFileSize>
 		</rollingPolicy>
