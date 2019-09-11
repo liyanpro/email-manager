@@ -4,7 +4,7 @@ import cloud.liyan.emailmanager.dao.model.EmailTask;
 import cloud.liyan.emailmanager.dao.model.MailTaskForWeb;
 import cloud.liyan.emailmanager.dao.model.constant.ServiceResult;
 import cloud.liyan.emailmanager.dao.model.constant.HttpConstants;
-import cloud.liyan.emailmanager.service.Impl.MailServiceImpl;
+import cloud.liyan.emailmanager.service.LoginService;
 import cloud.liyan.emailmanager.service.MailService;
 import cloud.liyan.emailmanager.util.InitUtil;
 import cloud.liyan.emailmanager.util.LoggerUtil;
@@ -33,6 +33,8 @@ public class EmailTaskApi extends LoggerUtil {
 
 	@Autowired
 	private MailService mailService;
+	@Autowired
+	private LoginService loginService;
 
 	@RequestMapping(value = "/create/EmailTask", method = RequestMethod.POST)
 	@ApiOperation(value = "创建邮件任务", notes = "通过此接口创建要发送的邮件任务")
