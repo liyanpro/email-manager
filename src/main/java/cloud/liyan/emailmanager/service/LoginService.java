@@ -10,7 +10,7 @@ import com.alibaba.fastjson.JSONObject;
  */
 public interface LoginService {
 
-    public boolean login(JSONObject json);
+    boolean login(JSONObject json);
 
     /**
      * 获取用户登录信息
@@ -19,7 +19,7 @@ public interface LoginService {
      * @param password
      * @return
      */
-    public UserInfo getUserInfo(String userName, String password);
+    UserInfo getUserInfo(String userName, String password);
 
     /**
      * 更新用户登录时间
@@ -27,5 +27,5 @@ public interface LoginService {
      * @param userInfo
      * @return
      */
-    public void updateLoginTime(UserInfo userInfo);
+    void updateLoginTime(UserInfo userInfo);
 }

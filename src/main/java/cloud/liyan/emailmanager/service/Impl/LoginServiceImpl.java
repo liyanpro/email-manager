@@ -50,11 +50,7 @@ public class LoginServiceImpl extends LoggerUtil implements LoginService {
             return false;
         }
         else {
-            if (password.equals(user.get(0).getPassword())) {
-                return true;
-            } else {
-                return false;
-            }
+            return password.equals(user.get(0).getPassword());
         }
     }
     @Override
