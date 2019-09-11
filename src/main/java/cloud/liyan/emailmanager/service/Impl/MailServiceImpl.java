@@ -16,15 +16,13 @@ import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 import redis.clients.jedis.Jedis;
 
 import javax.annotation.Resource;
 import java.io.*;
 import java.net.URLEncoder;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @description
@@ -42,9 +40,9 @@ public class MailServiceImpl extends LoggerUtil implements MailService {
         List<MailTaskForWeb> mailTaskForWebList = new ArrayList<MailTaskForWeb>();
         EmailTaskExample mailTaskExample = new EmailTaskExample();
         // 按状态升序排 0：未开始，1：进行中，2：暂停，3：结束
-        mailTaskExample.setOrderByClause(" status asc, createtime desc");
+        mailTaskExample.setOrderByClause(" status asc, create_time desc");
         List<EmailTask> mailTaskList = mailTaskMapper.selectByExample(mailTaskExample);
-        if (mailTaskList != null) {
+        if (!CollectionUtils.isEmpty(mailTaskList)) {
             Jedis jedis = RedisClient.getInstance().getJedis();
             if (StringUtils.isBlank(InitUtil.HOST)) {
                 InitUtil.mailInit();
