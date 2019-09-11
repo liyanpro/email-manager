@@ -1,5 +1,6 @@
 package cloud.liyan.emailmanager.api;
 
+import cloud.liyan.emailmanager.annotation.LoginCheck;
 import cloud.liyan.emailmanager.dao.model.EmailTask;
 import cloud.liyan.emailmanager.dao.model.MailTaskForWeb;
 import cloud.liyan.emailmanager.dao.model.constant.ServiceResult;
@@ -33,9 +34,8 @@ public class EmailTaskApi extends LoggerUtil {
 
 	@Autowired
 	private MailService mailService;
-	@Autowired
-	private LoginService loginService;
 
+	@LoginCheck(needLogin = true)
 	@RequestMapping(value = "/create/EmailTask", method = RequestMethod.POST)
 	@ApiOperation(value = "创建邮件任务", notes = "通过此接口创建要发送的邮件任务")
 	@ApiImplicitParams({ // 请求参数描述
@@ -94,6 +94,7 @@ public class EmailTaskApi extends LoggerUtil {
 		return serviceResult;
 	}
 
+	@LoginCheck(needLogin = true)
 	@RequestMapping(value = "/upload/EmailAdress", method = RequestMethod.POST)
 	@ApiOperation(value = "上传邮件地址", notes = "通过此接口上传当前邮件ID下要发送的邮件地址，文件为txt格式，一行一个邮件地址存储形式")
 	@ApiImplicitParams({ // 请求参数描述
@@ -133,6 +134,7 @@ public class EmailTaskApi extends LoggerUtil {
 		return serviceResult;
 	}
 
+	@LoginCheck(needLogin = true)
 	@RequestMapping(value = "/get/EmailAdress", method = RequestMethod.GET)
 	@ApiOperation(value = "获取邮件任务列表", notes = "通过此接口获取全部邮件任务列表，任务状态：{0：未开始，1：进行中，2：暂停，3：结束}")
 	@ApiImplicitParams({})
@@ -141,6 +143,7 @@ public class EmailTaskApi extends LoggerUtil {
 		return taskList;
 	}
 
+	@LoginCheck(needLogin = true)
 	@RequestMapping(value = "/handle/EmailTask", method = RequestMethod.GET)
 	@ApiOperation(value = "处理邮件任务", notes = "通过此接口处理相关的邮件，包括开始、暂停、停止、删除")
 	@ApiImplicitParams({ @ApiImplicitParam(name = "id", value = "邮件ID", required = true, dataType = "String"),

@@ -35,7 +35,6 @@ public class DesEncrypt {
 			// 加密，并把字节数组编码成字符串
 			encryptedData = new sun.misc.BASE64Encoder().encode(cipher.doFinal(data.getBytes()));
 		} catch (Exception e) {
-			// log.error("加密错误，错误信息：", e);
 			throw new RuntimeException("加密错误，错误信息：", e);
 		}
 		return encryptedData;
@@ -64,14 +63,13 @@ public class DesEncrypt {
 			// 把字符串解码为字节数组，并解密
 			decryptedData = new String(cipher.doFinal(new sun.misc.BASE64Decoder().decodeBuffer(cryptData)));
 		} catch (Exception e) {
-			// log.error("解密错误，错误信息：", e);
 			throw new RuntimeException("解密错误，错误信息：", e);
 		}
 		return decryptedData;
 	}
 
 	public static void main(String[] args) {
-		String str = "123456fangyuan";
+		String str = "liyan123456";
 		// DES数据加密
 		String s1 = encryptBasedDes(str);
 		System.out.println(s1);
