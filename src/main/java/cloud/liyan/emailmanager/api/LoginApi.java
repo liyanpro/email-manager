@@ -1,8 +1,4 @@
-package cloud.liyan.emailmanager.api;/**
- * @description
- * @author liyan
- * @date 2019-09-10 18:37
- */
+package cloud.liyan.emailmanager.api;
 
 import cloud.liyan.emailmanager.annotation.LoginCheck;
 import cloud.liyan.emailmanager.dao.model.UserInfo;

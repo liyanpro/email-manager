@@ -1,8 +1,4 @@
-package cloud.liyan.emailmanager.shiro;/**
- * @description
- * @author liyan
- * @date 2019-09-11 15:29
- */
+package cloud.liyan.emailmanager.shiro;
 
 import cloud.liyan.emailmanager.dao.model.UserInfo;
 import cloud.liyan.emailmanager.service.LoginService;
